@@ -11,7 +11,7 @@ import com.alibaba.fastjson.JSONObject;
  * @author Administrator
  *
  */
-@ConfigurationProperties(prefix = "spring.redis", ignoreUnknownFields = false)
+@ConfigurationProperties(prefix = "lock.redisson.redis", ignoreUnknownFields = false)
 public class RedisProperties {
 	private int database;
 
