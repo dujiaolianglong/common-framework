@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.lxl.common.component.lock;
+package com.lxl.common.component.lock.config;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,14 +41,14 @@ public class RedissonConfiguration {
 
 	@Configuration
 	@ConditionalOnClass({ Redisson.class })
-	@ConditionalOnExpression("'${spring.redis.mode}'=='single' or '${spring.redis.mode}'=='cluster' or '${spring.redis.mode}'=='sentinel'")
+	@ConditionalOnExpression("'${lock.redisson.redis.mode}'=='single' or '${lock.redisson.redis.mode}'=='cluster' or '${lock.redisson.redis.mode}'=='sentinel'")
 	protected class RedissonSingleClientConfiguration {
 
 		/**
 		 * 单机模式 redisson 客户端
 		 */
 		@Bean
-		@ConditionalOnProperty(name = "spring.redis.mode", havingValue = "single")
+		@ConditionalOnProperty(name = "lock.redisson.redis.mode", havingValue = "single")
 		RedissonClient redissonSingle() {
 			Config config = new Config();
 			String node = redisProperties.getSingle().getAddress();
@@ -68,7 +68,7 @@ public class RedissonConfiguration {
 		 * @return
 		 */
 		@Bean
-		@ConditionalOnProperty(name = "spring.redis.mode", havingValue = "cluster")
+		@ConditionalOnProperty(name = "lock.redisson.redis.mode", havingValue = "cluster")
 		RedissonClient redissonCluster() {
 			logger.info("redisson cluster redisProperties: [{}]", redisProperties.getCluster());
 			Config config = new Config();
@@ -104,7 +104,7 @@ public class RedissonConfiguration {
 		 * @return
 		 */
 		@Bean
-		@ConditionalOnProperty(name = "spring.redis.mode", havingValue = "sentinel")
+		@ConditionalOnProperty(name = "lock.redisson.redis.mode", havingValue = "sentinel")
 		RedissonClient redissonSentinel() {
 			logger.info("redisson sentinel redisProperties: [{}]", redisProperties.getSentinel());
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.lxl.common.component.lock;
+package com.lxl.common.component.lock.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
