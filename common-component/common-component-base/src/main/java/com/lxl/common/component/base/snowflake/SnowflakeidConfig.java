@@ -5,7 +5,7 @@ package com.lxl.common.component.base.snowflake;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
@@ -16,14 +16,13 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-@ConfigurationProperties(prefix = "snowflake")
 @RefreshScope
 public class SnowflakeidConfig {
 
-	/** wrokerId: 来自application配置文件 */
+	@Value("${app.wrokerId:}")
 	private long wrokerId;
 
-	/** 业务组件Id: 来自application配置文件 */
+	@Value("${app.serviceId:}")
 	private long serviceId;
 
 	private SnowflakeIdGenerator snowflakeIdGenerator;
