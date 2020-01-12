@@ -6,6 +6,8 @@ package com.lxl.common.component.kafka.producer;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -25,12 +27,14 @@ import com.lxl.common.component.kafka.model.KafkaMessage;
  *
  */
 @Component
-public class KafkaSendUtils {
+public class KafkaSendUtils implements InitializingBean {
 
 	@Autowired
-	private KafkaTemplate<String, String> kafkaTemplate;
+	private KafkaTemplate<Object, Object> kafkaTemplateTmp;
 
-	public void send(String topic, Object data) {
+	private static KafkaTemplate<Object, Object> kafkaTemplate;
+
+	public static void send(String topic, Object data) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(KafkaHeaders.TOPIC, topic);
 		MessageHeaders headers = new MessageHeaders(map);
@@ -41,7 +45,7 @@ public class KafkaSendUtils {
 		kafkaTemplate.send(message);
 	}
 
-	public void send(String topic, String key, Object data) {
+	public static void send(String topic, String key, Object data) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(KafkaHeaders.TOPIC, topic);
 		map.put(KafkaHeaders.MESSAGE_KEY, key);
@@ -53,7 +57,7 @@ public class KafkaSendUtils {
 		kafkaTemplate.send(message);
 	}
 
-	public void send(String topic, Integer partition, String key, Object data) {
+	public static void send(String topic, Integer partition, String key, Object data) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(KafkaHeaders.TOPIC, topic);
 		map.put(KafkaHeaders.MESSAGE_KEY, key);
@@ -66,8 +70,17 @@ public class KafkaSendUtils {
 		kafkaTemplate.send(message);
 	}
 
-	private String toJson(Object data) {
+	public static void send(ProducerRecord<Object, Object> producerRecord) {
+		kafkaTemplate.send(producerRecord);
+	}
+
+	private static String toJson(Object data) {
 		return JSON.toJSONStringWithDateFormat(data, "yyyy-MM-dd HH:mm:ss", SerializerFeature.WriteMapNullValue);
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		KafkaSendUtils.kafkaTemplate = kafkaTemplateTmp;
 	}
 
 }

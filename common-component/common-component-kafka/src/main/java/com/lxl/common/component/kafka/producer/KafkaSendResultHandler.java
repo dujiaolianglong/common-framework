@@ -25,6 +25,7 @@ public class KafkaSendResultHandler implements ProducerListener<Object, Object> 
 	@Override
 	public void onError(ProducerRecord<Object, Object> producerRecord, Exception exception) {
 		logger.info("Message send to kafka server  error : {}", producerRecord.toString());
+		KafkaSendUtils.send(producerRecord);
 	}
 
 }

@@ -23,9 +23,7 @@ public class IdWroker {
 	private static final Logger logger = LoggerFactory.getLogger(IdWroker.class);
 
 	/**
-	 * 根据table生成Id
 	 * 
-	 * @param tableName
 	 * @return
 	 * @throws ServiceException
 	 */
@@ -42,14 +40,13 @@ public class IdWroker {
 	}
 
 	/**
-	 * 获取table对应的ID生成器
 	 * 
-	 * @param tableName
 	 * @return
 	 */
 	private static SnowflakeIdGenerator getSnowflakeIdGenerator() {
-		SnowflakeidConfig snowflakeidConfig = (SnowflakeidConfig) SpringContextUtils.getBean(SnowflakeidConfig.class);
-		return snowflakeidConfig.getSnowflakeIdGenerator();
+		IdGeneratorFactory idGeneratorFactory = (IdGeneratorFactory) SpringContextUtils
+				.getBean(IdGeneratorFactory.class);
+		return idGeneratorFactory.getSnowflakeIdGenerator();
 	}
 
 }

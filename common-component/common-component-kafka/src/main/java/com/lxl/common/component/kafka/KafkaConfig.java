@@ -18,7 +18,7 @@ import com.lxl.common.component.kafka.producer.KafkaSendResultHandler;
  */
 @Component
 public class KafkaConfig {
-
+	
 	@Bean
 	@Primary
 	@ConditionalOnMissingBean(KafkaTemplate.class)
@@ -27,7 +27,7 @@ public class KafkaConfig {
 		kafkaTemplate.setProducerListener(kafkaSendResultHandler());
 		return kafkaTemplate;
 	}
-
+	
 	@Bean
 	KafkaSendResultHandler kafkaSendResultHandler() {
 		return new KafkaSendResultHandler();
