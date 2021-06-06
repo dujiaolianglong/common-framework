@@ -223,7 +223,7 @@ public class DateUtils {
 	 * @return
 	 */
 	public static Date addSeconds(Date date, Integer secs) {
-		if (secs == null || "".equals(secs)) {
+		if (secs == null) {
 			secs = NumberConstants.ZERO_INT;
 		}
 		Calendar cal = Calendar.getInstance();// 使用默认时区和语言环境获得一个日历

@@ -11,6 +11,8 @@ public interface DateFormatConstant {
 	String yyyy_MM_dd = "yyyy-MM-dd";
 	/** yyyy-MM-dd HH:mm:ss */
 	String yyyy_MM_ddHHmmss = "yyyy-MM-dd HH:mm:ss";
+	/** yyyy-MM-dd HH:mm:ss */
+	String yyyyMMddHHmmss = "yyyyMMddHHmmss";
 	/** yyyyMMdd */
 	String yyyyMMdd = "yyyyMMdd";
 	/** yyMMdd */

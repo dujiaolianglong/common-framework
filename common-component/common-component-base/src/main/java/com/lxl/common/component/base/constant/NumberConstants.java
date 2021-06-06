@@ -37,7 +37,7 @@ public interface NumberConstants {
 	/** -1 */
 	int NEGATIVE_ONE_INT = -1;
 	/** -7 */
-	int NEG_SEVEN_INT = -7;
+	int NEGATIVE_SEVEN_INT = -7;
 	/** -100 */
-	long TASK_USER_ID = -100;
+	long NEGATIVE_HUNDRED_ID = -100;
 }

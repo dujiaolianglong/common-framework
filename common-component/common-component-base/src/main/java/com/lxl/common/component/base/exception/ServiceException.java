@@ -1,6 +1,7 @@
 package com.lxl.common.component.base.exception;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lxl.common.component.base.enums.CommonExceptionEnum;
 
 /**
  * 
@@ -20,6 +21,12 @@ public class ServiceException extends RuntimeException {
 
 	public ServiceException() {
 		super();
+	}
+
+	public ServiceException(CommonExceptionEnum commonExceptionEnum) {
+		super();
+		this.code = commonExceptionEnum.getCode();
+		this.msg = commonExceptionEnum.getMsg();
 	}
 
 	public ServiceException(String msg) {
